@@ -1,60 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="git_test.list">
-      <field name="name">git_test list</field>
-      <field name="model">git_test.git_test</field>
-      <field name="arch" type="xml">
-        <list>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </list>
-      </field>
+    <!-- Add expiration date to the stock quant tree view (Add a line popup) -->
+    <record id="view_stock_quant_tree_simple_inherit" model="ir.ui.view">
+        <field name="name">stock.quant.tree.simple.inherit</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_simple"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="before">
+                <field name="expiration_date" string="Expiration Date"/>
+            </field>
+        </field>
     </record>
--->
-
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="git_test.action_window">
-      <field name="name">git_test window</field>
-      <field name="res_model">git_test.git_test</field>
-      <field name="view_mode">list,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="git_test.action_server">
-      <field name="name">git_test server</field>
-      <field name="model_id" ref="model_git_test_git_test"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "list,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
-
-    <!-- Top menu item -->
-<!--
-    <menuitem name="git_test" id="git_test.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="git_test.menu_1" parent="git_test.menu_root"/>
-    <menuitem name="Menu 2" id="git_test.menu_2" parent="git_test.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="git_test.menu_1_list" parent="git_test.menu_1"
-              action="git_test.action_window"/>
-    <menuitem name="Server to list" id="git_test" parent="git_test.menu_2"
-              action="git_test.action_server"/>
--->
-  </data>
 </odoo>

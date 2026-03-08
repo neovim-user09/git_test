@@ -1,17 +1,20 @@
-# from odoo import models, fields, api
+from odoo import models, fields
 
+class StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
 
-# class git_test(models.Model):
-#     _name = 'git_test.git_test'
-#     _description = 'git_test.git_test'
+    lot_id = fields.Many2one(
+        "stock.lot",
+        "Roll No.",
+        index=True,
+        ondelete="restrict",
+        check_company=True,
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+    )
 
+    expiration_date = fields.Datetime(
+        string="Expiration Date",
+        related="lot_id.expiration_date",
+        store=False,
+        help="Expiration date of the lot/serial number"
+    )
